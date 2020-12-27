@@ -43,6 +43,10 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="#">বিশেষজ্ঞের পরামর্শ</a>
           </li>
+
+          <li class="nav-item ">
+            <a class="nav-link text-white " href="#">আমার একাউন্ট </a>
+          </li>
         </ul>
       </div>
     </div>
