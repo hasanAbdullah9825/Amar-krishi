@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Blog Home - Start Bootstrap Template</title>
+  <title>আমার কৃষি</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{{asset('welcome/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -44,9 +44,23 @@
             <a class="nav-link text-white" href="#">বিশেষজ্ঞের পরামর্শ</a>
           </li>
 
-          <li class="nav-item ">
-            <a class="nav-link text-white " href="#">আমার একাউন্ট </a>
-          </li>
+         @auth
+         <li class="nav-item">
+          <a class="nav-link text-white" href="{{route('admin.dashboard')}}">ড্যাশবোর্ড</a>
+        </li>
+         @else
+         <li class="nav-item dropdown bg-success ">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            আমার একাউন্ট
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item " href="{{route('login')}}">লগিন</a>
+            <a class="dropdown-item " href="{{route('register')}}">রেজিস্ট্রশন</a>
+           
+        </li>
+         @endauth
+
+         
         </ul>
       </div>
     </div>

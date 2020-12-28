@@ -12,11 +12,21 @@
 */
 
 Route::get('/', function () {
-    // return view('welcome');
+     return view('welcome');
 
-    return view('admin.dashboard');
+   
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group([
+'as'=>'admin.',
+'prefix'=>'admin',
+'namespace'=>'admin',
+'middleware'=>['auth']],
+function(){
+ Route::get('/dashboard','DashboardController@index')->name('dashboard');
+
+});

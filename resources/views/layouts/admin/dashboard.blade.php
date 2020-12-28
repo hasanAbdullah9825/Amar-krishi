@@ -34,6 +34,11 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <span>হোম পেজ</span></a>
+            </li>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
@@ -258,9 +263,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">হাসান</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="{{asset('dashboard/img/agri.jpg')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -333,7 +338,15 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a  href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                      <button class="btn btn-secondary" type="button" >Logout</button>
+                 </a>
+
+     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                     @csrf
+     </form>
                 </div>
             </div>
         </div>
@@ -353,7 +366,7 @@
     <script src="{{asset('dashboard/vendor/chart.js/Chart.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('dashboard/ js/demo/chart-area-demo.js')}}"></script>
+    <script src="{{asset('dashboard/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('dashboard/js/demo/chart-pie-demo.js')}}"></script>
 
 </body>
