@@ -13,8 +13,9 @@
                         <tr>
                             <th>নাম</th>
                             <th>ইমেইল</th>
-
+                         
                             <th></th>
+                            
 
                         </tr>
                     </thead>
@@ -28,12 +29,17 @@
                                 <td>
                                     {{ $user->email }}
                                 </td>
+                                @if(!$user->isAdmin())
                                 <td>
                                     <form action="{{ route('admin.makeAdmin', $user->id) }}" method="POST">
                                         @csrf
                                         <button class="btn btn-outline-success" type="submit">Mark As Admin</button>
                                     </form>
                                 </td>
+                                @else
+                                <td></td>
+                                @endif
+                               
                             </tr>
 
                         @endforeach
