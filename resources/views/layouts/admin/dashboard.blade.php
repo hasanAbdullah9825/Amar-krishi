@@ -12,13 +12,13 @@
     <title>আমার একাউন্ট</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{asset('dashboard/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{asset('dashboard/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('dashboard/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -30,7 +30,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -41,8 +41,8 @@
             </li>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item {{ Request::is('admin/users*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.users') }}">
                     <i class="fa fa-users" aria-hidden="true"></i>
                     <span>ব্যবহার কারি তালিকা</span></a>
             </li>
@@ -50,7 +50,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            
+
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -61,7 +61,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        
+
                         <a class="collapse-item" href="buttons.html">আমার প্রবন্ধ গুলি</a>
                         <a class="collapse-item" href="cards.html">নতুন প্রবন্ধ</a>
                     </div>
@@ -69,11 +69,11 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-           
+
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -84,10 +84,10 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                     
+
                         <a class="collapse-item" href="login.html">নতুন ক্যাটাগরি</a>
                         <a class="collapse-item" href="register.html">সকল ক্যাটাগরি</a>
-                        
+
                     </div>
                 </div>
             </li>
@@ -114,7 +114,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -133,12 +133,12 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                   
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        
+
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -207,8 +207,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -219,8 +218,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -231,8 +229,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -264,8 +261,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">হাসান</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{asset('dashboard/img/agri.jpg')}}">
+                                <img class="img-profile rounded-circle" src="{{ asset('dashboard/img/agri.jpg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -294,8 +290,26 @@
 
                 </nav>
                 <!-- End of Topbar -->
+                @if (session()->has('success'))
+                    <div class="alert alert-success m-3" role="alert">
+                        {{ session()->get('success') }}
+                    </div>
 
-              @yield('content')
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <div class="ul">
+                            @foreach ($errors as $error)
+                                <li>
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </div>
+                    </div>
+
+                @endif
+                @yield('content')
+
 
             </div>
             <!-- End of Main Content -->
@@ -312,9 +326,9 @@
 
         </div>
 
-          <!-- End of Content Wrapper -->
-<!-- main Content-->
-        
+        <!-- End of Content Wrapper -->
+        <!-- main Content-->
+
 
     </div>
     <!-- End of Page Wrapper -->
@@ -338,36 +352,35 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a  href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
-                      <button class="btn btn-secondary" type="button" >Logout</button>
-                 </a>
+                        <button class="btn btn-secondary" type="button">Logout</button>
+                    </a>
 
-     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                     @csrf
-     </form>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('dashboard/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{asset('dashboard/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{ asset('dashboard/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('dashboard/js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ asset('dashboard/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{asset('dashboard/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{ asset('dashboard/vendor/chart.js/Chart.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('dashboard/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('dashboard/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{ asset('dashboard/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('dashboard/js/demo/chart-pie-demo.js') }}"></script>
 
 </body>
 
