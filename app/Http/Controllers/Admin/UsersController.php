@@ -19,7 +19,7 @@ class UsersController extends Controller
     public function makeAdmin(User $user)
     {
         $user->update(['role_id' => 1]);
-        $message = "Now $user->name is Admin";
+        $message = " $user->name কে এডমিন করা হয়েছে";
         session()->flash('success', $message);
         return redirect(route('admin.users'));
     }

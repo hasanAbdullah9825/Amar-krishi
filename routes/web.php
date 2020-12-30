@@ -30,5 +30,6 @@ function(){
  Route::get('/dashboard','DashboardController@index')->name('dashboard');
  Route::get('users','UsersController@index')->name('users');
  Route::post('users/{user}','UsersController@makeAdmin')->name('makeAdmin');
+ Route::resource('categories','CategoriesController');
 
 });
