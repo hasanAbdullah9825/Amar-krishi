@@ -17,7 +17,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index')->with('categories',Category::all());
+        return view('admin.category.index')->with('categories', Category::all());
     }
 
     /**
@@ -38,8 +38,8 @@ class CategoriesController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        Category::create(['name'=>$request->name]);
-        session()->flash('success','ক্যাটাগরি তৈরি হয়েছে');
+        Category::create(['name' => $request->name]);
+        session()->flash('success', 'ক্যাটাগরি তৈরি হয়েছে');
         return redirect(route('admin.categories.index'));
     }
 
@@ -62,7 +62,7 @@ class CategoriesController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.category.edit')->with('category',$category);
+        return view('admin.category.edit')->with('category', $category);
     }
 
     /**
@@ -74,9 +74,9 @@ class CategoriesController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $category->update(['name'=>$request->name]);
+        $category->update(['name' => $request->name]);
 
-        session()->flash('success','ক্যাটাগরি আপডেট হয়েছে');
+        session()->flash('success', 'ক্যাটাগরি আপডেট হয়েছে');
         return redirect(route('admin.categories.index'));
     }
 
@@ -86,8 +86,11 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        session()->flash('success', 'ক্যাটাগরি ডিলিট হয়েছে');
+        return redirect(route('admin.categories.index'));
     }
 }

@@ -16,7 +16,15 @@
                         @foreach ($categories as $category)
                             <tr class="text-dark">
                                 <td>{{ $category->name }}</td>
-                                <td> <a href="{{route('admin.categories.destroy',$category->id)}}"><i class="fas fa-trash"></i></a></td>
+                                {{-- <td> <a href="{{route('admin.categories.destroy',$category->id)}}"><i class="fas fa-trash"></i></a></td> --}}
+                                 <td>
+                                    <form action="{{route('admin.categories.destroy',$category->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+
+                                    </form>
+                                 </td>
                                 <td><a href="{{route('admin.categories.edit',$category->id)}}"><i class="fas fa-edit"></i></a></td>
                             </tr>
                         @endforeach

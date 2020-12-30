@@ -12,7 +12,7 @@
 
             <form action="{{ route('admin.categories.update',$category->id) }}" method="POST">
                 @csrf
-                @method('put')
+                @method('PUT')
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" value="{{ old('name', $category->name ?? '') }}">
