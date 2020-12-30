@@ -7,7 +7,7 @@
             <h2 class="text-center">সকল ব্যাবহার কারি</h2>
             
             <table class="table-responsive">
-                <table class="table table-bordered table-hover  ">
+                <table class="table table-bordered table-hover ">
                     <thead>
 
                         <tr>
