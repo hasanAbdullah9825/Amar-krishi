@@ -6,6 +6,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
+use App\Http\Requests\Admin\UpdateCategoryRequest;
 
 class CategoriesController extends Controller
 {
@@ -59,9 +60,9 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit')->with('category',$category);
     }
 
     /**
@@ -71,9 +72,12 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update(['name'=>$request->name]);
+
+        session()->flash('success','ক্যাটাগরি আপডেট হয়েছে');
+        return redirect(route('admin.categories.index'));
     }
 
     /**

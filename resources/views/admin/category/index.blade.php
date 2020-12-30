@@ -6,20 +6,20 @@
             <table class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr>
-                            <th>ক্যাটাগরি নাম</th>
-                            <th>  </th>
-                            <th>   </th>
+                        <tr class="text-dark">
+                            <th>ক্যাটাগরির নাম</th>
+                            <th> </th>
+                            <th> </th>
                         </tr>
                     </thead>
                     <tbody>
-@foreach($categories as $category)
-<tr>
-    <td>{{$category->name}}</td>
-    <td> <a href=""><i class="fas fa-trash"></i></a></td>
-    <td><a href=""><i class="fas fa-edit"></i></a></td>
-</tr>
-@endforeach
+                        @foreach ($categories as $category)
+                            <tr class="text-dark">
+                                <td>{{ $category->name }}</td>
+                                <td> <a href="{{route('admin.categories.destroy',$category->id)}}"><i class="fas fa-trash"></i></a></td>
+                                <td><a href="{{route('admin.categories.edit',$category->id)}}"><i class="fas fa-edit"></i></a></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </table>
