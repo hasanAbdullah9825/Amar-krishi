@@ -31,5 +31,6 @@ function(){
  Route::get('users','UsersController@index')->name('users');
  Route::post('users/{user}','UsersController@makeAdmin')->name('makeAdmin');
  Route::resource('categories','CategoriesController');
+ Route::resource('post', 'PostController');
 
 });

@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('dashboard/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    @yield('css')
 
 </head>
 
@@ -62,8 +63,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="buttons.html">আমার প্রবন্ধ গুলি</a>
-                        <a class="collapse-item" href="cards.html">নতুন প্রবন্ধ</a>
+                        <a class="collapse-item" href="{{route('admin.post.index')}}">আমার প্রবন্ধ গুলি</a>
+                        <a class="collapse-item" href="{{route('admin.post.create')}}">নতুন প্রবন্ধ</a>
                     </div>
                 </div>
             </li>
@@ -121,6 +122,9 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
+
+            
 
             <!-- Main Content -->
             <div id="content">
@@ -291,16 +295,17 @@
 
                 </nav>
                 <!-- End of Topbar -->
-                @if (session()->has('success'))
+                @if (session()->has('successMessage'))
                     <div class="alert alert-success m-3" role="alert">
-                        {{ session()->get('success') }}
+                        {{ session()->get('successMessage') }}
                     </div>
 
                 @endif
                 @if ($errors->any())
+               
                     <div class="alert alert-danger">
                         <div class="ul">
-                            @foreach ($errors as $error)
+                            @foreach ($errors->all() as $error)
                                 <li>
                                     {{ $error }}
                                 </li>
@@ -382,6 +387,7 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('dashboard/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('dashboard/js/demo/chart-pie-demo.js') }}"></script>
+    @yield('js')
 
 </body>
 

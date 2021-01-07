@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryRequest;
+use App\Http\Requests\Admin\CreateCategoryRequest;
 use App\Http\Requests\Admin\UpdateCategoryRequest;
 
 class CategoriesController extends Controller
@@ -36,10 +36,10 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(CreateCategoryRequest $request)
     {
         Category::create(['name' => $request->name]);
-        session()->flash('success', 'ক্যাটাগরি তৈরি হয়েছে');
+        session()->flash('successMessage', 'ক্যাটাগরি তৈরি হয়েছে');
         return redirect(route('admin.categories.index'));
     }
 
@@ -76,7 +76,7 @@ class CategoriesController extends Controller
     {
         $category->update(['name' => $request->name]);
 
-        session()->flash('success', 'ক্যাটাগরি আপডেট হয়েছে');
+        session()->flash('successMessage', 'ক্যাটাগরি আপডেট হয়েছে');
         return redirect(route('admin.categories.index'));
     }
 
@@ -90,7 +90,7 @@ class CategoriesController extends Controller
     {
         $category->delete();
 
-        session()->flash('success', 'ক্যাটাগরি ডিলিট হয়েছে');
+        session()->flash('successMessage', 'ক্যাটাগরি ডিলিট হয়েছে');
         return redirect(route('admin.categories.index'));
     }
 }
