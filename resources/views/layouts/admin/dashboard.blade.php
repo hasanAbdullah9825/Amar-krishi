@@ -42,11 +42,14 @@
             </li>
 
             <!-- Nav Item - Dashboard -->
+            @if(auth()->user()->isAdmin())
             <li class="nav-item {{ Request::is('admin/users*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.users') }}">
                     <i class="fa fa-users" aria-hidden="true"></i>
                     <span>ব্যবহার কারি তালিকা</span></a>
             </li>
+            @endif
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider">

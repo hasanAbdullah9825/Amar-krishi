@@ -7,10 +7,11 @@ use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreatePostRequest;
+use App\Http\Requests\Admin\UpdatePostRequest;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\str;
- use Carbon\Carbon;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -20,7 +21,16 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { }
+    {
+        if (auth()->user()->isAdmin()) {
+            $post = Post::all();
+        } else {
+            $post = auth()->user()->posts;
+        }
+
+
+        return view('admin.post.index')->with('posts', $post);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,29 +50,29 @@ class PostController extends Controller
      */
     public function store(CreatePostRequest $request)
 
-    {  
-         $image=$request->file('image');
-         $currentDate = Carbon::now()->toDateString();
-         $imageName = $request->title.$currentDate.uniqid().'.'.$image->getClientOriginalExtension();
+    {
+        $image = $request->file('image');
+        $currentDate = Carbon::now()->toDateString();
+        $imageName = $request->title . $currentDate . uniqid() . '.' . $image->getClientOriginalExtension();
 
-         if(!Storage::disk('public')->exists('post')){
-             Storage::disk('public')->makeDirectory('post');
-         }
+        if (!Storage::disk('public')->exists('post')) {
+            Storage::disk('public')->makeDirectory('post');
+        }
 
-         $postImage=Image::make($image)->resize(500,500)->stream();
-         Storage::disk('public')->put('post/'.$imageName,$postImage);
-        
+        $postImage = Image::make($image)->resize(750, 300)->stream();
+        Storage::disk('public')->put('post/' . $imageName, $postImage);
+
 
         Post::create([
             'title' => $request->title,
             'content' => $request->content,
             'published_at' => $request->published_at,
-            'user_id'=>auth()->user()->id,
+            'user_id' => auth()->user()->id,
             'image' => $imageName,
             'category_id' => $request->category
 
         ]);
-        session()->flash('successMessage','Post is created successfully');
+        session()->flash('successMessage', 'Post is created successfully');
         return redirect()->back();
     }
 
@@ -73,9 +83,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
+    { }
 
     /**
      * Show the form for editing the specified resource.
@@ -83,9 +91,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.post.edit')->with('post',$post)->with('categories',Category::all());
     }
 
     /**
@@ -95,9 +103,30 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, Post $post)
+
     {
-        //
+        $data=$request->only(['title','content','published_at','category']);
+
+        if($request->hasFile('image')){
+            $image=$request->file('image');
+            $currentDate=Carbon::now()->toDateString();
+            $imageName = $request->title . $currentDate . uniqid() . '.' . $image->getClientOriginalExtension();
+            $postImage=Image::make($image)->resize(750,300)->stream();
+            
+            Storage::disk('public')->delete('post/'.$post->image);
+            Storage::disk('public')->put('post/'.$imageName,$postImage);
+           
+            $data['image']=$imageName;
+            
+        }
+
+       
+        
+        $post->update($data);
+
+        session()->flash('successMessage', 'Post is Edited successfully');
+        return redirect()->route('admin.post.index');
     }
 
     /**

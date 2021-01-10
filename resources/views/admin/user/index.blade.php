@@ -29,7 +29,7 @@
                                 <td>
                                     {{ $user->email }}
                                 </td>
-                                @if(!$user->isAdmin())
+                                @if(!$user->isAdmin()  )
                                 <td>
                                     <form action="{{ route('admin.makeAdmin', $user->id) }}" method="POST">
                                         @csrf
