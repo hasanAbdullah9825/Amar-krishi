@@ -1,5 +1,5 @@
 
-@extends('layouts.nav')
+@extends('layouts.partial.nav_footer')
 @section( 'content')
 <!-- Page Content -->
 
@@ -31,8 +31,8 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
   
-          <h1 class="my-4">Page Heading
-            <small>Secondary Text</small>
+          <h1 class="my-4">এক নজরে দেখুন
+            <small>..................</small>
           </h1>
   
           @foreach($posts as $post)
@@ -41,12 +41,16 @@
             <img class="card-img-top" src="{{asset('storage/post/'.$post->image)}}" alt="Card image cap">
             <div class="card-body">
               <h2 class="card-title">{{$post->title}}</h2>
-              <p class="card-text">{!!$post->content!!}</p>
+              <p class="card-text"> 
+                 
+
+                  {{str_limit(strip_tags($post->content),200)}}
+              </p>
               <a href="#" class="btn btn-primary">Read More &rarr;</a>
             </div> 
             <div class="card-footer text-muted">
-              Posted on January 1, 2020 by
-              <a href="#">Start Bootstrap</a>
+              Posted on {{$post->created_at}},  by
+              <a href="#">{{$post->user->name}}</a>
             </div>
           </div>
           @endforeach
