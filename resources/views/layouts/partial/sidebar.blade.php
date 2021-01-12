@@ -1,6 +1,6 @@
    <!-- Categories Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
+          <h5 class="card-header">ক্যাটাগরি</h5>
           <div class="card-body">
             <div class="row">
                 @foreach ($categories as $category )

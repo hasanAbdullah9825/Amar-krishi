@@ -29,7 +29,7 @@ class PostController extends Controller
         }
 
 
-        return view('admin.post.index')->with('posts', $post);
+        return view('admin.post.index')->with('posts', Post::latest()->paginate(10));
     }
 
     /**
@@ -138,8 +138,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        session()->flash('successMessage', 'প্রবন্ধটি ডিলিট হয়েছে');
+        return redirect(route('admin.post.index'));
     }
 }
