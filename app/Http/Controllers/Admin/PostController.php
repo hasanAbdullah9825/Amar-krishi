@@ -23,13 +23,13 @@ class PostController extends Controller
     public function index()
     {
         if (auth()->user()->isAdmin()) {
-            $post = Post::all();
+            $post = Post::latest()->paginate(10);
         } else {
-            $post = auth()->user()->posts;
+            $post = auth()->user()->posts()->latest()->paginate(10);
         }
 
 
-        return view('admin.post.index')->with('posts', Post::latest()->paginate(10));
+        return view('admin.post.index')->with('posts', $post);
     }
 
     /**

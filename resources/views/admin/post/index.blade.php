@@ -12,23 +12,34 @@
                             <h2 class="card-title">{{ $post->title }}</h2>
                             <p class="card-text">{!! str_limit($post->content, 200) !!}</p>
 
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-6 ">
-                                    <a href="{{ route('admin.post.show', $post->id) }}" class=""><i class="fa fa-eye"
-                                            aria-hidden="true"></i></a>
-                                    <a href="{{ route('admin.post.edit', $post->id) }}" class=""><i
-                                            class="fas fa-edit"></i></a>
+                                    <a href="{{ route('admin.post.show', $post->id) }}" class="btn btn-success btn-sm">Details</a>
+                                    <a href="{{ route('admin.post.edit', $post->id) }}" class="btn btn-info btn-sm">Edit</a>
 
                                 </div>
                                 <div class="col-md-6 float-right">
                                     <form action="{{ route('admin.post.destroy', $post->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="float-right btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
+                                        <button class="float-right btn btn-danger btn-sm" type="submit">Delete</button>
 
                                     </form>
                                 </div>
                             </div>
+
+                            {{-- <div class="d-flex justify-content-between">
+                                <div><a href="{{ route('admin.post.show', $post->id) }}" class=""><i class="fa fa-eye"
+                                    aria-hidden="true"></i></a>
+                                         <a href="{{ route('admin.post.edit', $post->id) }}" class=""><i
+                                    class="fas fa-edit"></i></a></div>
+                                <div> <form action="{{ route('admin.post.destroy', $post->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="float-right " type="submit"><i sty class="far fa-trash-alt"></i></button>
+
+                                </form></div>
+                            </div> --}}
                         </div>
 
                         <div class="card-footer text-muted">

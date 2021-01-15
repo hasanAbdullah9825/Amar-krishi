@@ -13,7 +13,7 @@ class UsersController extends Controller
 
         $users = User::all();
 
-        return view('admin.user.index')->with('users', $users);
+        return view('admin.user.users')->with('users', $users);
     }
 
     public function makeAdmin(User $user)
