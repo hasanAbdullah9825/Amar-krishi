@@ -1,4 +1,4 @@
-@extends('layouts.admin.dashboard')
+@extends('layouts.user.dashboard')
 @section('content')
   <!-- Begin Page Content -->
   <div class="container-fluid">
@@ -10,7 +10,7 @@
 
        
 
-      This is admin dashboard1
+      This is user dashboard.........
 
        
 

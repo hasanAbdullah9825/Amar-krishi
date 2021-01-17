@@ -1,4 +1,4 @@
-@extends('layouts.admin.dashboard')
+@extends('layouts.user.dashboard')
 
 
 
@@ -11,30 +11,27 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card p-4">
-                    <form action="{{route('admin.post.update',$post->id)}}" method="POST" enctype="multipart/form-data">
-                        
+                    <form action="{{ route('user.post.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control" name="title" value="{{$post->title}}">
+                            <input type="text" class="form-control" name="title" value="">
                         </div>
 
 
                         <div class="form-group">
                             <label for="content">Content</label>
 
-                            <input id="x" type="hidden" name="content" value="{{$post->content}}">
+                            <input id="x" type="hidden" name="content">
                             <trix-editor input="x"></trix-editor>
 
                         </div>
                         <div class="form-group">
                             <label for="published_at">Publishet at</label>
-                            <input type="text" name="published_at" class="form-control" id="published_at" value="{{$post->published_at}}">
+                            <input type="text" name="published_at" class="form-control" id="published_at" value="">
                         </div>
-      
-                        <img src="{{asset('storage/post/'.$post->image)}}" alt="" style="width:100%">
-                        
+
+
                         <div class="form-group">
                             <label for="image">Image</label>
                             <input type="file" class="form-control" name="image" id="image">
@@ -45,8 +42,8 @@
                             <select name="category" id="" class="form-control ax1 " >
 
                                 @foreach ($categories as $category)
-                                    <option value="{{$category->id}}"  {{$post->category->id==$category->id?'selected':''}} >
-                                 {{$category->name}}
+                                    <option value="{{ $category->id }}">
+                                        {{ $category->name }}
                                     </option>
                                 @endforeach
 
@@ -56,7 +53,7 @@
 
 
                         <div class="form-group">
-                            <button type="submit" class=" btn btn-success">Update post</button>
+                            <button type="submit" class=" btn btn-success">create post</button>
                         </div>
 
                     </form>

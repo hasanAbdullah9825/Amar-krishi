@@ -20,6 +20,7 @@
 
 
 Route::get('/','WelcomeController@index');
+Route::get('show/{post}','WelcomeController@show')->name('post.show');
 
 Auth::routes();
 
@@ -28,8 +29,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group([
 'as'=>'admin.',
 'prefix'=>'admin',
-'namespace'=>'admin',
-'middleware'=>['auth']],
+'namespace'=>'Admin',
+'middleware'=>['auth','VerifyAdminMiddleware']],
 function(){
  Route::get('/dashboard','DashboardController@index')->name('dashboard');
  Route::get('users','UsersController@index')->name('users');
@@ -38,3 +39,14 @@ function(){
  Route::resource('post', 'PostController');
 
 });
+
+Route::group([
+    'as'=>'user.',
+    'prefix'=>'user',
+    'namespace'=>'User',
+    'middleware'=>['auth','VerifyUserMiddleware']],
+    function(){
+        
+        Route::get('/dashboard','DashboardController@index')->name('dashboard');
+        Route::resource('post', 'PostController');
+    });

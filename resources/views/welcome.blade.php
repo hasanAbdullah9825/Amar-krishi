@@ -46,7 +46,7 @@
 
                   {{str_limit(strip_tags($post->content),200)}}
               </p>
-              <a href="#" class="btn btn-primary">Read More &rarr;</a>
+              <a href="{{route('post.show',$post->id)}}" class="btn btn-primary">বিস্তারিত &rarr;</a>
             </div> 
             <div class="card-footer text-muted">
               Posted on {{$post->created_at}},  by
@@ -57,14 +57,14 @@
   
           {{ $posts->links() }}
           <!-- Pagination -->
-          <ul class="pagination justify-content-center mb-4">
+          {{-- <ul class="pagination justify-content-center mb-4">
             <li class="page-item">
               <a class="page-link" href="#">&larr; Older</a>
             </li>
             <li class="page-item disabled">
               <a class="page-link" href="#">Newer &rarr;</a>
             </li>
-          </ul>
+          </ul> --}}
   
         </div>
   
@@ -84,7 +84,7 @@
             </div>
           </div>
   
-          <!-- Categories Widget -->
+          {{-- <!-- Categories Widget -->
           <div class="card my-4">
             <h5 class="card-header">Categories</h5>
             <div class="card-body">
@@ -125,7 +125,9 @@
             <div class="card-body">
               You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
             </div>
-          </div>
+          </div> --}}
+
+          @include('layouts.partial.sidebar')
   
         </div>
   

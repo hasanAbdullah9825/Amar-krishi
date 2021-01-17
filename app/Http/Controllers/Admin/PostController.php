@@ -23,7 +23,7 @@ class PostController extends Controller
     public function index()
     {
         if (auth()->user()->isAdmin()) {
-            $post = Post::latest()->paginate(10);
+            $post = Post::latest()->paginate(2);
         } else {
             $post = auth()->user()->posts()->latest()->paginate(10);
         }

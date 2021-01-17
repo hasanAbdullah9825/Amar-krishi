@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card p-4">
-                    <form action="{{route('admin.post.update',$post->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('user.post.update',$post->id)}}" method="POST" enctype="multipart/form-data">
                         
                         @csrf
                         @method('PUT')

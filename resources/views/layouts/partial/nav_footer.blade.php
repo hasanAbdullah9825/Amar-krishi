@@ -46,7 +46,12 @@
 
          @auth
          <li class="nav-item">
+          @if(auth()->user()->isAdmin())
           <a class="nav-link text-white" href="{{route('admin.dashboard')}}">ড্যাশবোর্ড</a>
+          @else
+          <a class="nav-link text-white" href="{{route('user.dashboard')}}">ড্যাশবোর্ড</a>
+            
+          @endif
         </li>
          @else
          <li class="nav-item dropdown bg-success ">

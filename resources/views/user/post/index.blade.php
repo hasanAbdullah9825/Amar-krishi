@@ -1,4 +1,4 @@
-@extends('layouts.admin.dashboard')
+@extends('layouts.user.dashboard')
 @section('content')
     <div class="container">
         <div class="row">
@@ -16,12 +16,12 @@
                           </p>
                           <div class="row mb-3">
                             <div class="col-md-6 ">
-                                <a href="{{ route('admin.post.show', $post->id) }}" class="btn btn-success btn-sm">Details</a>
-                                <a href="{{ route('admin.post.edit', $post->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                <a href="{{ route('user.post.show', $post->id) }}" class="btn btn-success btn-sm">Details</a>
+                                <a href="{{ route('user.post.edit', $post->id) }}" class="btn btn-info btn-sm">Edit</a>
 
                             </div>
                             <div class="col-md-6 float-right">
-                                <form action="{{ route('admin.post.destroy', $post->id) }}" method="POST">
+                                <form action="{{ route('user.post.destroy', $post->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="float-right btn btn-danger btn-sm" type="submit">Delete</button>
@@ -40,4 +40,6 @@
             </div>
         </div>
     </div>
+    
+
 @endsection
