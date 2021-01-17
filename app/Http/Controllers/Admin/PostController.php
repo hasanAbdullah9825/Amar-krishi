@@ -61,7 +61,7 @@ class PostController extends Controller
 
         $postImage = Image::make($image)->resize(750, 300)->stream();
         Storage::disk('public')->put('post/' . $imageName, $postImage);
-
+       
 
         Post::create([
             'title' => $request->title,
@@ -110,6 +110,7 @@ class PostController extends Controller
 
     {
         $data=$request->only(['title','content','published_at','category']);
+        //dd($request->published_at);
 
         if($request->hasFile('image')){
             $image=$request->file('image');
@@ -123,6 +124,8 @@ class PostController extends Controller
             $data['image']=$imageName;
             
         }
+
+        
 
        
         

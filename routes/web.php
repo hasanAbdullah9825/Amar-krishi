@@ -19,7 +19,7 @@
 
 
 
-Route::get('/','WelcomeController@index');
+Route::get('/','WelcomeController@index')->name('welcome');
 Route::get('show/{post}','WelcomeController@show')->name('post.show');
 
 Auth::routes();

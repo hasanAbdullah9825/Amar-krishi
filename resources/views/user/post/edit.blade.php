@@ -28,6 +28,8 @@
                             <trix-editor input="x"></trix-editor>
 
                         </div>
+                       
+
                         <div class="form-group">
                             <label for="published_at">Publishet at</label>
                             <input type="text" name="published_at" class="form-control" id="published_at" value="{{$post->published_at}}">

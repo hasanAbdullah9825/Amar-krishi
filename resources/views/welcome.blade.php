@@ -73,14 +73,18 @@
   
           <!-- Search Widget -->
           <div class="card my-4">
-            <h5 class="card-header">Search</h5>
+            <h5 class="card-header">কিছু খুজতেছেন?</h5>
             <div class="card-body">
+              <form action="{{route('welcome')}}" method="GET">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
+                <input type="text" class="form-control" placeholder="" name="search">
                 <span class="input-group-append">
-                  <button class="btn btn-secondary" type="button">Go!</button>
+                  <button class="btn btn-secondary" type="submit">খুঁজুন
+
+                  </button>
                 </span>
               </div>
+              </form>
             </div>
           </div>
   
