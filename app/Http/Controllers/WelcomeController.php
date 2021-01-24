@@ -11,7 +11,7 @@ class WelcomeController extends Controller
   public function index()
   {
     //dd(request()->query('search'));
-    return view('welcome')->with('posts', Post::published()->latest()->paginate(3))->with('categories', Category::all());
+    return view('welcome')->with('posts', Post::published()->searched()->latest()->paginate(3))->with('categories', Category::all());
   }
 
   public function show(Post $post)
