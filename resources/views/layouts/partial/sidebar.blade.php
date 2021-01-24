@@ -4,7 +4,7 @@
           <div class="card-body">
             <div class="row">
                 @foreach ($categories as $category )
-      <div class="col-6"><a href="">{{$category->name}}</a></div>
+      <div class="col-6"><a href="{{route('categorywisePost',$category->id)}}">{{$category->name}}</a></div>
            
        @endforeach
              

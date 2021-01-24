@@ -19,4 +19,8 @@ class WelcomeController extends Controller
     return view('post-show')->with('post', $post)->with('categories', Category::all());
    
   }
+  public function categorywisePost(Category $category){
+    return view('welcome')->with('posts', $category->posts()->published()->searched()->latest()->paginate(3))->with('categories', Category::all());
+
+  }
 }

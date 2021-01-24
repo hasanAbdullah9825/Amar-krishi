@@ -20,6 +20,8 @@
 
 
 Route::get('/','WelcomeController@index')->name('welcome');
+Route::get('/category/{category}','WelcomeController@categorywisePost')->name('categorywisePost');
+
 Route::get('show/{post}','WelcomeController@show')->name('post.show');
 
 Auth::routes();
