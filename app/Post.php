@@ -32,4 +32,8 @@ class Post extends Model
     {
         return $query->where('published_at', '<=', now());
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

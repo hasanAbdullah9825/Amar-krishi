@@ -21,6 +21,7 @@
 
 Route::get('/','WelcomeController@index')->name('welcome');
 Route::get('/category/{category}','WelcomeController@categorywisePost')->name('categorywisePost');
+Route::post('comment/{post}','CommentsController@store')->name('comment.store');
 
 Route::get('show/{post}','WelcomeController@show')->name('post.show');
 
