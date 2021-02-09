@@ -65,10 +65,10 @@
 
         <!-- Single Comment -->
       
-
+        @foreach($comments as $comment)
         <!-- Comment with nested comments -->
         <div class="media mb-4">
-         @foreach($comments as $comment)
+         
          <div class="media mt-4">
           <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
           <div class="media-body">
@@ -76,9 +76,9 @@
           {{$comment->content}}
           </div>
         </div>
-         @endforeach
+         
         </div>
-
+        @endforeach
       </div>
 
       <!-- Sidebar Widgets Column -->
